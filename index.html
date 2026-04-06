@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Late Night Questions 🌙</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1e0f3f, #5f6caf);
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .card {
+      width: 300px;
+      min-height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .fade {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      background: white;
+      color: #1e0f3f;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #ddd;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .reset {
+      margin-top: 10px;
+      font-size: 12px;
+      opacity: 0.7;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>🌙 Late Night Questions</h2>
+  <div class="card" id="question">
+    Click below to draw a question...
+  </div>
+  <button onclick="randomQuestion()">Draw Question</button>
+  <div class="reset" onclick="resetDeck()">reset deck</div>
+</div>
+
+<script>
+let questions = [
+"What’s something that made you smile today?",
+"What kind of vibe do you think you give off?",
+"What’s your comfort song right now?",
+"Coffee or tea, and why?",
+"Are you more of a morning or night person?",
+"What’s your favorite way to spend a chill day?",
+"What’s a random thing you’re currently into?",
+"Do you prefer calls or chats?",
+"What’s your favorite kind of weather?",
+"What’s something simple that makes you happy?",
+
+"What’s something people often misunderstand about you?",
+"What kind of people do you feel most comfortable with?",
+"What’s a memory you wish you could relive?",
+"What motivates you these days?",
+"When do you feel most like yourself?",
+"What’s something you’ve been thinking about a lot lately?",
+"What kind of energy do you like from people?",
+"What’s something you’re proud of but don’t usually say?",
+"What helps you calm down when you’re stressed?",
+"What’s one thing you want to improve about yourself?",
+
+"What are you afraid of losing right now?",
+"When was the last time you felt genuinely happy?",
+"What does love mean to you right now?",
+"What kind of connection are you looking for?",
+"What’s something you don’t usually tell people?",
+"Do you believe people come into your life for a reason?",
+"What’s something your past self would be proud of?",
+"What’s one thing you wish someone understood about you?",
+"What kind of future do you quietly hope for?",
+"What does “home” feel like to you?",
+
+"What’s a small detail you notice about people right away?",
+"What kind of conversations do you enjoy the most?",
+"What’s something that instantly calms you?",
+"Do you believe in timing or everything happening for a reason?",
+"What’s a place that feels peaceful to you?",
+"What’s your love language (giving or receiving)?",
+"What kind of music feels like “you”?",
+"What’s something you’ve outgrown recently?",
+"What kind of person do you feel drawn to?",
+"What’s one thing that can always make you laugh?",
+
+"When do you feel the most understood?",
+"What’s a quiet moment you really enjoyed recently?",
+"What’s something you wish you could tell your younger self?",
+"What kind of energy do you avoid?",
+"What’s something that scares you but also excites you?",
+"What’s a memory that still feels soft when you think about it?",
+"What does your ideal day look like?",
+"What’s something you’re still figuring out about yourself?",
+"What kind of reassurance do you need when things feel off?",
+"What does “peace” look like for you right now?"
+];
+
+let remaining = [...questions];
+
+function randomQuestion() {
+  if (remaining.length === 0) {
+    document.getElementById("question").innerText = "No more questions 😭 Reset the deck!";
+    return;
+  }
+
+  const card = document.getElementById("question");
+  card.classList.add("fade");
+
+  setTimeout(() => {
+    const index = Math.floor(Math.random() * remaining.length);
+    card.innerText = remaining[index];
+    remaining.splice(index, 1);
+    card.classList.remove("fade");
+  }, 200);
+}
+
+function resetDeck() {
+  remaining = [...questions];
+  document.getElementById("question").innerText = "Deck reset 💜";
+}
+</script>
+
+</body>
+</html>
